@@ -23,6 +23,27 @@ resource "aws_iam_user" "kevin-user" {
   }
 }
 
+resource "aws_iam_user" "otuo-user" {
+  name = "otuo"
+  path = "/system/"
+
+  tags = {
+    Name  = "otuo"
+    managed_by = "Terraform"
+    team = "DevOps"
+  }
+}
+resource "aws_iam_user" "asante-user" {
+  name = "asante"
+  path = "/system/"
+
+  tags = {
+    Name  = "asante"
+    managed_by = "Terraform"
+    team = "DevOps"
+  }
+}
+
 resource "aws_iam_user" "chin-user" {
   name = "chin-Owusu"
   path = "/system/"
@@ -46,7 +67,8 @@ resource "aws_iam_group_membership" "team" {
   name = "team-membership"
   users = [
    aws_iam_user.kevin-user.name,
-   
+   aws_iam_user.otuo-user.name,
+   aws_iam_user.asante-user.name,
   ]
   group = aws_iam_group.devops-group.name
 }
